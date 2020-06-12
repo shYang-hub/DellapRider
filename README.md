@@ -2,6 +2,7 @@
 DellapRider
 
 https://reactnavigation.org/docs
+
 https://akveo.github.io/react-native-ui-kitten/docs
 참조
 
