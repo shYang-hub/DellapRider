@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
+import { ListRenderItemInfo, StyleSheet } from 'react-native';
 import {
   Input,
   Layout,
@@ -9,7 +9,7 @@ import {
   ListItemElement,
   Text,
   ThemedComponentProps,
-  StyleSheet,
+  withStyles,
 } from '@ui-kitten/components';
 import { TodoInProgressScreenProps } from '../../navigation/todo.navigator';
 import { AppRoute } from '../../navigation/app-routes';
@@ -29,7 +29,7 @@ const allTodos: Todo[] = [
   Todo.mocked2(),
 ];
 
-const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoInProgressScreen): ListElement => {
+const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & ThemedComponentProps): ListElement => {
 
   const [todos, setTodos] = React.useState<Todo[]>(allTodos);
   const [query, setQuery] = React.useState<string>('');
@@ -86,7 +86,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoIn
   );
 };
 
-const styles = StyleSheet.create({
+export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (theme) => ({
   container: {
     flex: 1,
   },
@@ -97,6 +97,28 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     backgroundColor: theme['background-basic-color-1'],
+  },
+  item: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    paddingHorizontal: 12,
+  },
+  itemProgressBar: {
+    width: '50%',
+    marginVertical: 12,
+  },
+}));
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  filterInput: {
+    marginTop: 16,
+    marginHorizontal: 8,
+  },
+  list: {
+    flex: 1,
   },
   item: {
     flexDirection: 'column',
