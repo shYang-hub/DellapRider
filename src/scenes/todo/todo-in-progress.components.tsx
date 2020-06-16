@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
+import { ListRenderItemInfo, StyleSheet } from 'react-native';
 import {
   Input,
   Layout,
@@ -9,7 +9,7 @@ import {
   ListItemElement,
   Text,
   ThemedComponentProps,
-  StyleSheet,
+  withStyles,
 } from '@ui-kitten/components';
 import { TodoInProgressScreenProps } from '../../navigation/todo.navigator';
 import { AppRoute } from '../../navigation/app-routes';
@@ -29,7 +29,7 @@ const allTodos: Todo[] = [
   Todo.mocked2(),
 ];
 
-const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoInProgressScreen): ListElement => {
+const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & ThemedComponentProps): ListElement => {
 
   const [todos, setTodos] = React.useState<Todo[]>(allTodos);
   const [query, setQuery] = React.useState<string>('');
@@ -50,7 +50,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoIn
 
   const renderTodo = ({ item }: ListRenderItemInfo<Todo>): ListItemElement => (
     <ListItem
-      style={styles.item}
+      style={props.theme.item}
       onPress={navigateTodoDetails}>
       <Text category='s1'>
         {item.title}
@@ -61,7 +61,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoIn
         {item.description}
       </Text>
       <ProgressBar
-        style={styles.itemProgressBar}
+        style={props.theme.itemProgressBar}
         progress={item.progress}
         text={`${item.progress}%`}
       />
@@ -69,22 +69,45 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & TodoIn
   );
 
   return (
-    <Layout style={styles.container}>
+    <Layout style={props.theme.container}>
       <Input
-        style={styles.filterInput}
+        style={props.theme.filterInput}
         placeholder='Search'
         value={query}
         icon={SearchIcon}
         onChangeText={onChangeQuery}
       />
       <List
-        style={styles.list}
+        style={props.theme.list}
         data={todos}
         renderItem={renderTodo}
       />
     </Layout>
   );
 };
+
+export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (theme) => ({
+  container: {
+    flex: 1,
+  },
+  filterInput: {
+    marginTop: 16,
+    marginHorizontal: 8,
+  },
+  list: {
+    flex: 1,
+    backgroundColor: theme['background-basic-color-1'],
+  },
+  item: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    paddingHorizontal: 12,
+  },
+  itemProgressBar: {
+    width: '50%',
+    marginVertical: 12,
+  },
+}));
 
 const styles = StyleSheet.create({
   container: {
@@ -96,7 +119,6 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    backgroundColor: theme['background-basic-color-1'],
   },
   item: {
     flexDirection: 'column',
