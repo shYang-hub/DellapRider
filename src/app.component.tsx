@@ -6,9 +6,11 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { AppNavigator } from './navigation/app.navigator';
 import { AppRoute } from './navigation/app-routes';
+import Reactotron from 'reactotron-react-native'
 
 export default (): React.ReactFragment => {
 
+Reactotron.log('hello rendering world');
   // This value is used to determine the initial screen
   const isAuthorized: boolean = true;
 

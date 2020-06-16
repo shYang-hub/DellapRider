@@ -50,7 +50,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
 
   const renderTodo = ({ item }: ListRenderItemInfo<Todo>): ListItemElement => (
     <ListItem
-      style={props.theme.item}
+      style={item.themedStyle.item}
       onPress={navigateTodoDetails}>
       <Text category='s1'>
         {item.title}
@@ -61,7 +61,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
         {item.description}
       </Text>
       <ProgressBar
-        style={props.theme.itemProgressBar}
+        style={item.themedStyle.itemProgressBar}
         progress={item.progress}
         text={`${item.progress}%`}
       />
@@ -69,16 +69,16 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
   );
 
   return (
-    <Layout style={props.theme.container}>
+    <Layout style={props.themedStyle.container}>
       <Input
-        style={props.theme.filterInput}
+        style={props.themedStyle.filterInput}
         placeholder='Search'
         value={query}
         icon={SearchIcon}
         onChangeText={onChangeQuery}
       />
       <List
-        style={props.theme.list}
+        style={props.themedStyle.list}
         data={todos}
         renderItem={renderTodo}
       />
