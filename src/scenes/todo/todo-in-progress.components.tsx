@@ -39,7 +39,6 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
     const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
       return todo.title.toLowerCase().includes(query.toLowerCase());
     });
-
     setTodos(nextTodos);
     setQuery(query);
   };

@@ -7,7 +7,7 @@ export enum AppRoute {
   TODO = 'ToDo',
   TODO_IN_PROGRESS = 'ToDo In Progress',
   TODO_DONE = 'ToDo Done',
-  TODO_DETAILS = 'ToDo Details',
+  TODO_DETAILS = 'Details',
   PROFILE = 'Profile',
   ABOUT = 'About',
 }

@@ -9,4 +9,5 @@ import App from './src/app.component';
 if(__DEV__) {
   import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
 }
+
 AppRegistry.registerComponent(appName, () => App);
