@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListRenderItemInfo, StyleSheet } from 'react-native';
+import { ListRenderItemInfo } from 'react-native';
 import {
   Input,
   Layout,
@@ -16,6 +16,7 @@ import { AppRoute } from '../../navigation/app-routes';
 import { ProgressBar } from '../../components/progress-bar.component';
 import { SearchIcon } from '../../assets/icons';
 import { Todo } from '../../data/todo.model';
+import Reactotron from 'reactotron-react-native'
 
 const allTodos: Todo[] = [
   Todo.mocked0(),
@@ -50,7 +51,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
 
   const renderTodo = ({ item }: ListRenderItemInfo<Todo>): ListItemElement => (
     <ListItem
-      style={item.themedStyle.item}
+      style={props.eva.style.item}
       onPress={navigateTodoDetails}>
       <Text category='s1'>
         {item.title}
@@ -61,7 +62,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
         {item.description}
       </Text>
       <ProgressBar
-        style={item.themedStyle.itemProgressBar}
+        style={props.eva.style.itemProgressBar}
         progress={item.progress}
         text={`${item.progress}%`}
       />
@@ -69,16 +70,16 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
   );
 
   return (
-    <Layout style={props.themedStyle.container}>
+    <Layout style={props.eva.style.container}>
       <Input
-        style={props.themedStyle.filterInput}
+        style={props.eva.style.filterInput}
         placeholder='Search'
         value={query}
         icon={SearchIcon}
         onChangeText={onChangeQuery}
       />
       <List
-        style={props.themedStyle.list}
+        style={props.eva.style.list}
         data={todos}
         renderItem={renderTodo}
       />
@@ -108,25 +109,3 @@ export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (t
     marginVertical: 12,
   },
 }));
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  filterInput: {
-    marginTop: 16,
-    marginHorizontal: 8,
-  },
-  list: {
-    flex: 1,
-  },
-  item: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingHorizontal: 12,
-  },
-  itemProgressBar: {
-    width: '50%',
-    marginVertical: 12,
-  },
-});
