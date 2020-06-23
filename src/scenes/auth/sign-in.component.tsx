@@ -1,14 +1,15 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
-import { Button, CheckBox, Layout, LayoutElement } from '@ui-kitten/components';
+import { Button, CheckBox, Layout } from '@ui-kitten/components';
 import { Formik, FormikProps } from 'formik';
 import { SignInScreenProps } from '../../navigation/auth.navigator';
 import { AppRoute } from '../../navigation/app-routes';
 import { FormInput } from '../../components/form-input.component';
 import { EyeIcon, EyeOffIcon } from '../../assets/icons';
 import { SignInData, SignInSchema } from '../../data/sign-in.model';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export const SignInScreen = (props: SignInScreenProps): LayoutElement => {
+export const SignInScreen = (props: SignInScreenProps) => {
 
   const [shouldRemember, setShouldRemember] = React.useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = React.useState<boolean>(false);
@@ -33,40 +34,47 @@ export const SignInScreen = (props: SignInScreenProps): LayoutElement => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const renderPasswordIcon = (props): React.ReactElement => {
+    const IconComponent = passwordVisible ? EyeIcon : EyeOffIcon;
+    return (
+      <TouchableWithoutFeedback onPress={onPasswordIconPress}>
+        <IconComponent {...props} />
+      </TouchableWithoutFeedback>
+    );
+  };
+
   const renderForm = (props: FormikProps<SignInData>): React.ReactFragment => (
     <React.Fragment>
       <FormInput
-        id='email'
+        id='id'
         style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
+        placeholder='아이디'
       />
       <FormInput
         id='password'
         style={styles.formControl}
-        placeholder='Password'
+        placeholder='비밀번호'
         secureTextEntry={!passwordVisible}
-        icon={passwordVisible ? EyeIcon : EyeOffIcon}
-        onIconPress={onPasswordIconPress}
+        accessoryRight={renderPasswordIcon}
       />
       <View style={styles.resetPasswordContainer}>
         <CheckBox
           style={styles.formControl}
           checked={shouldRemember}
-          onChange={setShouldRemember}
-          text='Remember Me'
-        />
+          onChange={setShouldRemember}>
+          아이디 기억하기
+        </CheckBox>
         <Button
           appearance='ghost'
           status='basic'
           onPress={navigateResetPassword}>
-          Forgot password?
+          비밀번호 초기화
         </Button>
       </View>
       <Button
         style={styles.submitButton}
         onPress={props.handleSubmit}>
-        SIGN IN
+        로그인
       </Button>
     </React.Fragment>
   );
@@ -84,13 +92,6 @@ export const SignInScreen = (props: SignInScreenProps): LayoutElement => {
           onSubmit={onFormSubmit}>
           {renderForm}
         </Formik>
-        <Button
-          style={styles.noAccountButton}
-          appearance='ghost'
-          status='basic'
-          onPress={navigateSignUp}>
-          Don't have an account?
-        </Button>
       </Layout>
     </React.Fragment>
   );

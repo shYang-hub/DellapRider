@@ -1,22 +1,45 @@
 import React from 'react';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/core';
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBarProps,
+  MaterialTopTabNavigationProp,
+} from '@react-navigation/material-top-tabs';
+import { TodoTabNavigationProp } from './home.navigator';
 import { AppRoute } from './app-routes';
-import { TodoTabBar, TodoInProgressScreen, TodoDoneScreen } from '../scenes/todo';
+import {
+  TodoDetailsRouteParams,
+  TodoDetailsScreen,
+  TodoInProgressScreen,
+  TodoTabBar,
+} from '../scenes/todo';
 import { DoneAllIcon, GridIcon } from '../assets/icons';
 
-const TopTab = createMaterialTopTabNavigator();
+type TodoNavigatorParams = {
+  [AppRoute.TODO]: undefined;
+  [AppRoute.TODO_DETAILS]: TodoDetailsRouteParams;
+}
+
+export type TodoScreenProps = MaterialTopTabBarProps & {
+  navigation: TodoTabNavigationProp;
+}
+
+export interface TodoDetailsScreenProps {
+  navigation: StackNavigationProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>;
+  route: RouteProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>;
+}
+
+const Stack = createStackNavigator<TodoNavigatorParams>();
+
+// FIXME: Is it possible to track swipe progress?
+//
+// In this case, it's needed to synchronize tab-bar indicator in TodoScreen
+// Currently I have set `swipeEnabled` to `false` just for saving navigation consistence
 
 export const TodoNavigator = (): React.ReactElement => (
-  <TopTab.Navigator tabBar={props => <TodoTabBar {...props} />}>
-    <TopTab.Screen
-      name={AppRoute.TODO_IN_PROGRESS}
-      component={TodoInProgressScreen}
-      options={{ title: 'IN PROGRESS', tabBarIcon: GridIcon }}
-    />
-    <TopTab.Screen
-      name={AppRoute.TODO_DONE}
-      component={TodoDoneScreen}
-      options={{ title: 'DONE', tabBarIcon: DoneAllIcon }}
-    />
-  </TopTab.Navigator>
+  <Stack.Navigator headerMode='none'>
+    <Stack.Screen name={AppRoute.TODO_IN_PROGRESS} component={TodoInProgressScreen}/>
+    <Stack.Screen name={AppRoute.TODO_DETAILS} component={TodoDetailsScreen}/>
+  </Stack.Navigator>
 );

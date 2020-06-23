@@ -4,9 +4,16 @@ import { AuthNavigator } from './auth.navigator';
 import { HomeNavigator } from './home.navigator';
 import { AppRoute } from './app-routes';
 
-const Stack = createStackNavigator();
+type StackNavigatorProps = React.ComponentProps<typeof Stack.Navigator>;
 
-export const AppNavigator = (props): React.ReactElement => (
+export type AppNavigatorParams = {
+  [AppRoute.AUTH]: undefined;
+  [AppRoute.HOME]: undefined;
+}
+
+const Stack = createStackNavigator<AppNavigatorParams>();
+
+export const AppNavigator = (props: Partial<StackNavigatorProps>): React.ReactElement => (
   <Stack.Navigator {...props} headerMode='none'>
     <Stack.Screen name={AppRoute.AUTH} component={AuthNavigator}/>
     <Stack.Screen name={AppRoute.HOME} component={HomeNavigator}/>

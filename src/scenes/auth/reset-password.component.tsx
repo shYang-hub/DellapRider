@@ -24,15 +24,33 @@ export const ResetPasswordScreen = (props: ResetPasswordScreenProps): LayoutElem
   const renderForm = (props: FormikProps<ResetPasswordData>): React.ReactFragment => (
     <React.Fragment>
       <FormInput
-        id='email'
+        id='id'
         style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
+        placeholder="아이디"
+        keyboardType='number-pad'
+      />
+      <FormInput
+        id='phoneNum'
+        style={styles.formControl}
+        placeholder="휴대폰 번호 ('-'없이)"
+        keyboardType='number-pad'
       />
       <Button
         style={styles.button}
         onPress={props.handleSubmit}>
-        DONE
+        인증번호 받기
+      </Button>
+      <FormInput
+        id='authNum'
+        style={styles.formControl}
+        placeholder="인증번호"
+        keyboardType='number-pad'
+      />
+
+      <Button
+        style={styles.button}
+        onPress={props.handleSubmit}>
+        인증
       </Button>
     </React.Fragment>
   );
@@ -72,6 +90,6 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   button: {
-    marginVertical: 24,
+    marginVertical: 10,
   },
 });

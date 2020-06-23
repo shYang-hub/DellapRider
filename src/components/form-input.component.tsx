@@ -28,3 +28,4 @@ export const FormInput = ({ id, ...inputProps }: FormInputProps): InputElement =
     />
   );
 };
+

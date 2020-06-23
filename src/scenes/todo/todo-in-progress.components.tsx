@@ -7,16 +7,15 @@ import {
   ListElement,
   ListItem,
   ListItemElement,
+  StyleService,
   Text,
-  ThemedComponentProps,
-  withStyles,
+  useStyleSheet,
 } from '@ui-kitten/components';
 import { TodoInProgressScreenProps } from '../../navigation/todo.navigator';
 import { AppRoute } from '../../navigation/app-routes';
 import { ProgressBar } from '../../components/progress-bar.component';
 import { SearchIcon } from '../../assets/icons';
 import { Todo } from '../../data/todo.model';
-import Reactotron from 'reactotron-react-native'
 
 const allTodos: Todo[] = [
   Todo.mocked0(),
@@ -30,15 +29,17 @@ const allTodos: Todo[] = [
   Todo.mocked2(),
 ];
 
-const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & ThemedComponentProps): ListElement => {
+export const TodoInProgressScreen = (props: TodoInProgressScreenProps): ListElement => {
 
   const [todos, setTodos] = React.useState<Todo[]>(allTodos);
   const [query, setQuery] = React.useState<string>('');
+  const styles = useStyleSheet(themedStyles);
 
   const onChangeQuery = (query: string): void => {
     const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
       return todo.title.toLowerCase().includes(query.toLowerCase());
     });
+
     setTodos(nextTodos);
     setQuery(query);
   };
@@ -48,10 +49,10 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
     props.navigation.navigate(AppRoute.TODO_DETAILS, { todo });
   };
 
-  const renderTodo = ({ item }: ListRenderItemInfo<Todo>): ListItemElement => (
+  const renderTodo = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
     <ListItem
-      style={props.eva.style.item}
-      onPress={navigateTodoDetails}>
+      style={styles.item}
+      onPress={() => navigateTodoDetails(index)}>
       <Text category='s1'>
         {item.title}
       </Text>
@@ -61,7 +62,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
         {item.description}
       </Text>
       <ProgressBar
-        style={props.eva.style.itemProgressBar}
+        style={styles.itemProgressBar}
         progress={item.progress}
         text={`${item.progress}%`}
       />
@@ -69,16 +70,16 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
   );
 
   return (
-    <Layout style={props.eva.style.container}>
+    <Layout style={styles.container}>
       <Input
-        style={props.eva.style.filterInput}
+        style={styles.filterInput}
         placeholder='Search'
         value={query}
-        icon={SearchIcon}
+        accessoryLeft={SearchIcon}
         onChangeText={onChangeQuery}
       />
       <List
-        style={props.eva.style.list}
+        style={styles.list}
         data={todos}
         renderItem={renderTodo}
       />
@@ -86,7 +87,7 @@ const TodoInProgressScreenComponent = (props: TodoInProgressScreenProps & Themed
   );
 };
 
-export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (theme) => ({
+const themedStyles = StyleService.create({
   container: {
     flex: 1,
   },
@@ -96,7 +97,7 @@ export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (t
   },
   list: {
     flex: 1,
-    backgroundColor: theme['background-basic-color-1'],
+    backgroundColor: 'background-basic-color-1',
   },
   item: {
     flexDirection: 'column',
@@ -107,4 +108,6 @@ export const TodoInProgressScreen = withStyles(TodoInProgressScreenComponent, (t
     width: '50%',
     marginVertical: 12,
   },
-}));
+});
+
+

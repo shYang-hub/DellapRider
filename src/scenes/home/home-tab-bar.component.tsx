@@ -1,8 +1,14 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationTab, Divider, BottomNavigationTabElement } from '@ui-kitten/components';
+import {
+  BottomNavigation,
+  BottomNavigationTab,
+  BottomNavigationTabElement,
+  Divider,
+} from '@ui-kitten/components';
+import { BottomHomeScreenProps } from '../../navigation/home.navigator';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
 
-export const HomeTabBar = (props): SafeAreaLayoutElement => {
+export const HomeTabBar = (props: BottomHomeScreenProps): SafeAreaLayoutElement => {
 
   const onSelect = (index: number): void => {
     const selectedTabRoute: string = props.state.routeNames[index];
@@ -15,6 +21,7 @@ export const HomeTabBar = (props): SafeAreaLayoutElement => {
       <BottomNavigationTab
         key={route.key}
         title={options.title}
+        // @ts-ignore: all Tab Screens strictly have UI Kitten Icon
         icon={options.tabBarIcon}
       />
     );

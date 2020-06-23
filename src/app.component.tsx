@@ -10,7 +10,7 @@ import { AppRoute } from './navigation/app-routes';
 export default (): React.ReactFragment => {
 
   // This value is used to determine the initial screen
-  const isAuthorized: boolean = true;
+  const isAuthorized: boolean = false;
 
   return (
     <React.Fragment>
