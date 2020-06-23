@@ -17,13 +17,19 @@ import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
 import { HomeIcon, InfoIcon, LayoutIcon, PersonIcon } from '../assets/icons';
 
 type HomeDrawerNavigatorParams = {
-  [AppRoute.HOME]: undefined;
-  [AppRoute.ABOUT]: undefined;
+  [AppRoute.NOTICE]: undefined;
+  [AppRoute.ACC_INFO]: undefined;
+  [AppRoute.ACC_INFO_BNK]: undefined;
+  [AppRoute.WITHDRAWAL]: undefined;
+  [AppRoute.POINT_HIST]: undefined;
+  [AppRoute.DEL_RPT]: undefined;
+  [AppRoute.APP_SET]: undefined;
 }
 
 type HomeBottomTabsNavigatorParams = {
-  [AppRoute.TODO]: undefined;
-  [AppRoute.PROFILE]: undefined;
+  [AppRoute.ORDER]: undefined;
+  [AppRoute.DELIVERY]: undefined;
+  [AppRoute.DEL_FIN]: undefined;
 }
 
 export type TodoTabNavigationProp = CompositeNavigationProp<
@@ -71,7 +77,12 @@ const HomeBottomNavigator = (): React.ReactElement => (
     <BottomTab.Screen
       name={AppRoute.PROFILE}
       component={ProfileNavigator}
-      options={{ title: '배달', tabBarIcon: PersonIcon }}
+      options={{ title: '배달중', tabBarIcon: PersonIcon }}
+    />
+    <BottomTab.Screen
+      name={'df'}
+      component={ProfileNavigator}
+      options={{ title: '완료', tabBarIcon: PersonIcon }}
     />
   </BottomTab.Navigator>
 );

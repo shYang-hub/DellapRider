@@ -1,52 +1,56 @@
 import React from 'react';
 import { ImageBackground, StyleSheet } from 'react-native';
 import { EdgeInsets, useSafeArea } from 'react-native-safe-area-context';
-import { Formik, FormikProps } from 'formik';
 import { Button, Layout, LayoutElement } from '@ui-kitten/components';
-import { SignUpScreenProps } from '../../navigation/auth.navigator';
+import { Formik, FormikProps } from 'formik';
+import { InitPassScreenProps } from '../../navigation/auth.navigator';
 import { AppRoute } from '../../navigation/app-routes';
-import { Toolbar } from '../../components/toolbar.component';
 import { FormInput } from '../../components/form-input.component';
-import { SignUpData, SignUpSchema } from '../../data/sign-up.model';
+import { Toolbar } from '../../components/toolbar.component';
+import { ResetPasswordData, ResetPasswordSchema } from '../../data/reset-password.model';
 
-export const SignUpScreen = (props: SignUpScreenProps): LayoutElement => {
+export const InitPassScreen = (props: InitPassScreenProps): LayoutElement => {
 
   const insets: EdgeInsets = useSafeArea();
 
-  const onFormSubmit = (values: SignUpData): void => {
-    navigateHome();
-  };
-
-  const navigateHome = (): void => {
-    props.navigation.navigate(AppRoute.HOME);
+  const onFormSubmit = (values: ResetPasswordData): void => {
+    navigateSignIn();
   };
 
   const navigateSignIn = (): void => {
-    props.navigation.navigate(AppRoute.SIGN_IN);
+    props.navigation.navigate(AppRoute.LOGIN);
   };
 
-  const renderForm = (props: FormikProps<SignUpData>): React.ReactFragment => (
+  const renderForm = (props: FormikProps<ResetPasswordData>): React.ReactFragment => (
     <React.Fragment>
       <FormInput
-        id='email'
+        id='id'
         style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
+        placeholder="아이디"
+        keyboardType='number-pad'
       />
       <FormInput
-        id='password'
+        id='phoneNum'
         style={styles.formControl}
-        placeholder='Password'
-      />
-      <FormInput
-        id='username'
-        style={styles.formControl}
-        placeholder='Username'
+        placeholder="휴대폰 번호 ('-'없이)"
+        keyboardType='number-pad'
       />
       <Button
-        style={styles.submitButton}
+        style={styles.button}
         onPress={props.handleSubmit}>
-        SIGN UP
+        인증번호 받기
+      </Button>
+      <FormInput
+        id='authNum'
+        style={styles.formControl}
+        placeholder="인증번호"
+        keyboardType='number-pad'
+      />
+
+      <Button
+        style={styles.button}
+        onPress={props.handleSubmit}>
+        인증
       </Button>
     </React.Fragment>
   );
@@ -63,18 +67,11 @@ export const SignUpScreen = (props: SignUpScreenProps): LayoutElement => {
       </ImageBackground>
       <Layout style={styles.formContainer}>
         <Formik
-          initialValues={SignUpData.empty()}
-          validationSchema={SignUpSchema}
+          initialValues={ResetPasswordData.empty()}
+          validationSchema={ResetPasswordSchema}
           onSubmit={onFormSubmit}>
           {renderForm}
         </Formik>
-        <Button
-          style={styles.haveAccountButton}
-          appearance='ghost'
-          status='basic'
-          onPress={navigateSignIn}>
-          Already have an account?
-        </Button>
       </Layout>
     </React.Fragment>
   );
@@ -92,10 +89,7 @@ const styles = StyleSheet.create({
   formControl: {
     marginVertical: 4,
   },
-  submitButton: {
-    marginVertical: 24,
-  },
-  haveAccountButton: {
-    alignSelf: 'center',
+  button: {
+    marginVertical: 10,
   },
 });

@@ -2,14 +2,14 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, CheckBox, Layout } from '@ui-kitten/components';
 import { Formik, FormikProps } from 'formik';
-import { SignInScreenProps } from '../../navigation/auth.navigator';
+import { LoginScreenProps } from '../../navigation/auth.navigator';
 import { AppRoute } from '../../navigation/app-routes';
 import { FormInput } from '../../components/form-input.component';
 import { EyeIcon, EyeOffIcon } from '../../assets/icons';
 import { SignInData, SignInSchema } from '../../data/sign-in.model';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export const SignInScreen = (props: SignInScreenProps) => {
+export const LoginScreen = (props: LoginScreenProps) => {
 
   const [shouldRemember, setShouldRemember] = React.useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = React.useState<boolean>(false);
@@ -22,12 +22,8 @@ export const SignInScreen = (props: SignInScreenProps) => {
     props.navigation.navigate(AppRoute.HOME);
   };
 
-  const navigateSignUp = (): void => {
-    props.navigation.navigate(AppRoute.SIGN_UP);
-  };
-
   const navigateResetPassword = (): void => {
-    props.navigation.navigate(AppRoute.RESET_PASSWORD);
+    props.navigation.navigate(AppRoute.INIT_PASS);
   };
 
   const onPasswordIconPress = (): void => {

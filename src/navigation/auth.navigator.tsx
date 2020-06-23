@@ -3,28 +3,29 @@ import { RouteProp } from '@react-navigation/core';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import { AppRoute } from './app-routes';
 import { AppNavigatorParams } from './app.navigator';
-import { ResetPasswordScreen, SignInScreen } from '../scenes/auth';
+import { InitPassScreen, LoginScreen } from '../scenes/auth';
 
 type AuthNavigatorParams = AppNavigatorParams & {
-  [AppRoute.SIGN_IN]: undefined;
-  [AppRoute.RESET_PASSWORD]: undefined;
+  [AppRoute.LOGIN]: undefined;
+  [AppRoute.INIT_PASS]: undefined;
 }
 
-export interface SignInScreenProps {
-  navigation: StackNavigationProp<AuthNavigatorParams, AppRoute.SIGN_IN>;
-  route: RouteProp<AuthNavigatorParams, AppRoute.SIGN_IN>;
+export interface LoginScreenProps {
+  navigation: StackNavigationProp<AuthNavigatorParams, AppRoute.LOGIN>;
+  route: RouteProp<AuthNavigatorParams, AppRoute.LOGIN>;
 }
 
-export interface ResetPasswordScreenProps {
-  navigation: StackNavigationProp<AuthNavigatorParams, AppRoute.RESET_PASSWORD>;
-  route: RouteProp<AuthNavigatorParams, AppRoute.RESET_PASSWORD>;
+export interface InitPassScreenProps {
+  navigation: StackNavigationProp<AuthNavigatorParams, AppRoute.INIT_PASS>;
+  route: RouteProp<AuthNavigatorParams, AppRoute.INIT_PASS>;
 }
 
 const Stack = createStackNavigator<AuthNavigatorParams>();
 
 export const AuthNavigator = (): React.ReactElement => (
   <Stack.Navigator headerMode='none'>
-    <Stack.Screen name={AppRoute.SIGN_IN} component={SignInScreen}/>
-    <Stack.Screen name={AppRoute.RESET_PASSWORD} component={ResetPasswordScreen}/>
+    <Stack.Screen name={AppRoute.LOGIN} component={LoginScreen}/>
+    <Stack.Screen name={AppRoute.INIT_PASS} component={InitPassScreen}/>
   </Stack.Navigator>
+
 );

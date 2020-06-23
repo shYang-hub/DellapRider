@@ -1,3 +1,2 @@
-export { ResetPasswordScreen } from './reset-password.component';
-export { SignInScreen } from './sign-in.component';
-export { SignUpScreen } from './sign-up.component';
+export { InitPassScreen } from './init-password.component';
+export { LoginScreen } from './login.component';
