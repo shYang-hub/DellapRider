@@ -10,8 +10,9 @@ import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { TodoNavigator } from './todo.navigator';
-import { ProfileNavigator } from './profile.navigator';
+import { OrderNavigator } from './order.navigator';
+import { DeliveryNavigator } from './delivery.navigator';
+import { DelFinNavigator } from './delFin.navigator';
 import { AppRoute } from './app-routes';
 import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
 import { HomeIcon, InfoIcon, LayoutIcon, PersonIcon } from '../assets/icons';
@@ -32,12 +33,16 @@ type HomeBottomTabsNavigatorParams = {
   [AppRoute.DEL_FIN]: undefined;
 }
 
-export type TodoTabNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.TODO>,
+export type OrderTabNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.ORDER>,
   DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
 
-export type ProfileTabNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.PROFILE>,
+export type DeliveryTabNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.DELIVERY>,
+  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
+
+export type DelFinTabNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.DEL_FIN>,
   DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
 
 export interface AboutScreenProps {
@@ -70,18 +75,18 @@ const HomeBottomNavigator = (): React.ReactElement => (
   // @ts-ignore: `tabBar` also contains a DrawerNavigationProp
   <BottomTab.Navigator tabBar={HomeTabBar}>
     <BottomTab.Screen
-      name={AppRoute.TODO}
-      component={TodoNavigator}
+      name={AppRoute.ORDER}
+      component={OrderNavigator}
       options={{ title: '주문', tabBarIcon: LayoutIcon }}
     />
     <BottomTab.Screen
-      name={AppRoute.PROFILE}
-      component={ProfileNavigator}
+      name={AppRoute.DELIVERY}
+      component={DeliveryNavigator}
       options={{ title: '배달중', tabBarIcon: PersonIcon }}
     />
     <BottomTab.Screen
-      name={'df'}
-      component={ProfileNavigator}
+      name={AppRoute.DEL_FIN}
+      component={DelFinNavigator}
       options={{ title: '완료', tabBarIcon: PersonIcon }}
     />
   </BottomTab.Navigator>
