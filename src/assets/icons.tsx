@@ -1,6 +1,18 @@
 import React from 'react';
 import { Icon, IconElement } from '@ui-kitten/components';
 
+export const OrderIcon = (props): IconElement => (
+  <Icon {...props} name='shopping-cart-outline'/>
+);
+
+export const DeliveryIcon = (props): IconElement => (
+  <Icon {...props} name='car-outline'/>
+);
+
+export const DelFinIcon = (props): IconElement => (
+  <Icon {...props} name='checkmark-circle-outline'/>
+);
+
 export const BackIcon = (props): IconElement => (
   <Icon {...props} name='arrow-back'/>
 );
@@ -56,9 +68,3 @@ export const GridIcon = (props): IconElement => (
 export const SearchIcon = (props): IconElement => (
   <Icon {...props} name='search-outline'/>
 );
-
-
-
-
-
-

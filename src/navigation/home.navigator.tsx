@@ -15,7 +15,7 @@ import { DeliveryNavigator } from './delivery.navigator';
 import { DelFinNavigator } from './delFin.navigator';
 import { AppRoute } from './app-routes';
 import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
-import { HomeIcon, InfoIcon, LayoutIcon, PersonIcon } from '../assets/icons';
+import { HomeIcon, InfoIcon, OrderIcon, DeliveryIcon, DelFinIcon } from '../assets/icons';
 
 type HomeDrawerNavigatorParams = {
   [AppRoute.NOTICE]: undefined;
@@ -51,7 +51,7 @@ export interface AboutScreenProps {
 }
 
 export type BottomHomeScreenProps = BottomTabBarProps & {
-  navigation: TodoTabNavigationProp;
+  navigation: OrderTabNavigationProp;
 };
 
 export type DrawerHomeScreenProps = DrawerContentComponentProps & {
@@ -77,17 +77,17 @@ const HomeBottomNavigator = (): React.ReactElement => (
     <BottomTab.Screen
       name={AppRoute.ORDER}
       component={OrderNavigator}
-      options={{ title: '주문', tabBarIcon: LayoutIcon }}
+      options={{ title: '주문', tabBarIcon: OrderIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.DELIVERY}
       component={DeliveryNavigator}
-      options={{ title: '배달중', tabBarIcon: PersonIcon }}
+      options={{ title: '배달중', tabBarIcon: DeliveryIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.DEL_FIN}
       component={DelFinNavigator}
-      options={{ title: '완료', tabBarIcon: PersonIcon }}
+      options={{ title: '완료', tabBarIcon: DelFinIcon }}
     />
   </BottomTab.Navigator>
 );

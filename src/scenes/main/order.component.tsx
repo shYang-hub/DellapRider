@@ -1,40 +1,111 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Divider, Layout, Text } from '@ui-kitten/components';
-import { OrderScreenProps } from '../../navigation/order.navigator';
-import { Toolbar } from '../../components/toolbar.component';
+import { ListRenderItemInfo } from 'react-native';
 import {
-  SafeAreaLayout,
-  SafeAreaLayoutElement,
-  SaveAreaInset,
-} from '../../components/safe-area-layout.component';
+  Input,
+  Layout,
+  List,
+  ListElement,
+  ListItem,
+  ListItemElement,
+  StyleService,
+  Text,
+  useStyleSheet,
+} from '@ui-kitten/components';
+import { OrderScreenProps } from '../../navigation/order.navigator';
+import { AppRoute } from '../../navigation/app-routes';
+import { ProgressBar } from '../../components/progress-bar.component';
+import { SearchIcon } from '../../assets/icons';
+import { Todo } from '../../data/todo.model';
+import { Toolbar } from '../../components/toolbar.component';
 import { MenuIcon } from '../../assets/icons';
 
-export const OrderScreen = (props: OrderScreenProps): SafeAreaLayoutElement => (
-  <SafeAreaLayout
-    style={styles.safeArea}
-    insets={SaveAreaInset.TOP}>
+const allTodos: Todo[] = [
+  Todo.mocked0(),
+  Todo.mocked1(),
+  Todo.mocked2(),
+  Todo.mocked0(),
+  Todo.mocked1(),
+  Todo.mocked2(),
+  Todo.mocked0(),
+  Todo.mocked1(),
+  Todo.mocked2(),
+];
+
+export const OrderScreen = (props: OrderScreenProps): ListElement => {
+
+  const [todos, setTodos] = React.useState<Todo[]>(allTodos);
+  const [query, setQuery] = React.useState<string>('');
+  const styles = useStyleSheet(themedStyles);
+
+  const onChangeQuery = (query: string): void => {
+    const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
+      return todo.title.toLowerCase().includes(query.toLowerCase());
+    });
+
+    setTodos(nextTodos);
+    setQuery(query);
+  };
+
+  const navigateOrderDetails = (todoIndex: number): void => {
+    const { [todoIndex]: todo } = todos;
+    props.navigation.navigate(AppRoute.ORDER_DETAILS, { todo });
+  };
+
+  const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
+    <ListItem
+      style={styles.item}
+      onPress={() => navigateOrderDetails(index)}>
+      <Text category='s1'>
+        {item.title}
+      </Text>
+      <Text
+        appearance='hint'
+        category='c1'>
+        {item.description}
+      </Text>
+      <ProgressBar
+        style={styles.itemProgressBar}
+        progress={item.progress}
+        text={`${item.progress}%`}
+      />
+    </ListItem>
+  );
+
+  return (
+    <Layout style={styles.container}>
     <Toolbar
       title='React Navigation Ex 🐱'
       backIcon={MenuIcon}
       onBackPress={props.navigation.toggleDrawer}
     />
-    <Divider/>
-    <Layout style={styles.container}>
-      <Text category='h1'>
-        Order
-      </Text>
+      <List
+        style={styles.list}
+        data={todos}
+        renderItem={renderOrder}
+      />
     </Layout>
-  </SafeAreaLayout>
-);
+  );
+};
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
+const themedStyles = StyleService.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  filterInput: {
+    marginTop: 16,
+    marginHorizontal: 8,
+  },
+  list: {
+    flex: 1,
+    backgroundColor: 'background-basic-color-1',
+  },
+  item: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    paddingHorizontal: 12,
+  },
+  itemProgressBar: {
+    width: '50%',
+    marginVertical: 12,
   },
 });
