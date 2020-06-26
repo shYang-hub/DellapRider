@@ -1,13 +1,13 @@
 import React from 'react';
 import { Divider, Tab, TabBar, TabElement, MenuItem } from '@ui-kitten/components';
-import { TodoScreenProps } from '../../navigation/todo.navigator';
+import { OrderScreenProps } from '../../navigation/order.navigator';
 import { AppRoute } from '../../navigation/app-routes';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
 import { Toolbar } from '../../components/toolbar.component';
 import { InfoIcon, LogoutIcon, MenuIcon } from '../../assets/icons';
 
 
-export const TodoTabBar = (props: TodoScreenProps): SafeAreaLayoutElement => {
+export const OrderTabBar = (props: OrderScreenProps): SafeAreaLayoutElement => {
 
   const onMenuItemSelect = (index: number): void => {
     const { [index]: selectedItem } = menu;
