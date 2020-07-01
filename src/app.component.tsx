@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { light, mapping } from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { MaterialIconsPack } from './assets/Material-icons'
 import { AppNavigator } from './navigation/app.navigator';
 import { AppRoute } from './navigation/app-routes';
 
@@ -14,7 +15,7 @@ export default (): React.ReactFragment => {
 
   return (
     <React.Fragment>
-      <IconRegistry icons={EvaIconsPack}/>
+      <IconRegistry icons={ [ EvaIconsPack, MaterialIconsPack ] }/>
       <ApplicationProvider
         mapping={mapping}
         theme={light}>

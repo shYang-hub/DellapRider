@@ -1,16 +1,48 @@
 import React from 'react';
 import { Icon, IconElement } from '@ui-kitten/components';
 
-export const OrderIcon = (props): IconElement => (
-  <Icon {...props} name='shopping-cart-outline'/>
+export const HomeIcon = (props): IconElement => (
+  <Icon {...props} name='home-outline' pack='material'/>
 );
 
-export const DeliveryIcon = (props): IconElement => (
-  <Icon {...props} name='car-outline'/>
+export const BullhornIcon = (props): IconElement => (
+  <Icon {...props} name='bullhorn-outline' pack='material' />
 );
 
-export const DelFinIcon = (props): IconElement => (
-  <Icon {...props} name='checkmark-circle-outline'/>
+export const AccIcon = (props): IconElement => (
+  <Icon {...props} name='account' pack='material' />
+);
+
+export const ShieldAccIcon = (props): IconElement => (
+  <Icon {...props} name='shield-account-outline' pack='material' />
+);
+
+export const CashRefundAccIcon = (props): IconElement => (
+  <Icon {...props} name='cash-refund' pack='material' />
+);
+
+export const PointIcon = (props): IconElement => (
+  <Icon {...props} name='alpha-p-circle-outline' pack='material' />
+);
+
+export const ClipboardCheckIcon = (props): IconElement => (
+  <Icon {...props} name='bike' pack='material' />
+);
+
+export const SettingIcon = (props): IconElement => (
+  <Icon {...props} name='settings-outline' pack='material'/>
+);
+
+export const FoodIcon = (props): IconElement => (
+  <Icon {...props} name='food' pack='material'/>
+);
+
+export const MotorbikeIcon = (props): IconElement => (
+  <Icon {...props} name='motorbike' pack='material'/>
+);
+
+export const CheckboxCircleIcon = (props): IconElement => (
+  <Icon {...props} name='checkbox-marked-circle-outline' pack='material'/>
 );
 
 export const BackIcon = (props): IconElement => (
@@ -19,10 +51,6 @@ export const BackIcon = (props): IconElement => (
 
 export const LayoutIcon = (props): IconElement => (
   <Icon {...props} name='layout-outline'/>
-);
-
-export const PersonIcon = (props): IconElement => (
-  <Icon {...props} name='person-outline'/>
 );
 
 export const MoreVerticalIcon = (props): IconElement => (
@@ -51,10 +79,6 @@ export const EyeOffIcon = (props): IconElement => (
 
 export const MenuIcon = (props): IconElement => (
   <Icon {...props} name='menu-outline'/>
-);
-
-export const HomeIcon = (props): IconElement => (
-  <Icon {...props} name='home-outline'/>
 );
 
 export const DoneAllIcon = (props): IconElement => (

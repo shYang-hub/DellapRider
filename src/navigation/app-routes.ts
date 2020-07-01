@@ -10,19 +10,27 @@ export enum AppRoute {
   DEL_FIN        ='Delivery Finish',           /*완료*/
   /**************************메인화면**************************/
   /**************************사이드 매뉴**************************/
-  NOTICE        ='Notice',                    /*공지*/
-  ACC_INFO      ='Account Information',       /*계정정보*/
-  ACC_INFO_BNK  ='Bank Account Information',  /*계좌정보*/
-  WITHDRAWAL    ='Withdrawal',                /*출금*/
-  POINT_RPT    ='Point History',             /*포인트 내역*/
-  DEL_RPT       ='Delivery Report',           /*대행내역*/
-  APP_SET       ='Application Setting',       /*앱설정*/
+  /*NOTICE        ='Notice',                    /*공지*/
+  /*ACC_INFO      ='Account Information',       /*계정정보*/
+  /*ACC_INFO_BNK  ='Bank Account Information',  /*계좌정보*/
+  /*WITHDRAWAL    ='Withdrawal',                /*출금*/
+  /*POINT_RPT     ='Point History',             /*포인트 내역*/
+  /*DEL_RPT       ='Delivery Report',           /*대행내역*/
+  /*APP_SET       ='Application Setting',       /*앱설정*/
+
+  NOTICE        =/*'Notice',*/                    '공지',
+  ACC_INFO      =/*'Account Information',*/       '계정정보',
+  ACC_INFO_BNK  =/*'Bank Account Information',*/  '계좌정보',
+  WITHDRAWAL    =/*'Withdrawal',*/                '출금',
+  POINT_RPT     =/*'Point History',*/             '포인트 내역',
+  DEL_RPT       =/*'Delivery Report',*/           '대행내역',
+  APP_SET       =/*'Application Setting',*/       '앱설정',
   /**************************사이드 매뉴**************************/
   AUTH = 'Auth',
   SIGN_IN = 'Sign In',
   SIGN_UP = 'Sign Up',
   RESET_PASSWORD = 'Reset Passrord',
-  HOME = 'Home11',
+  HOME = 'Home',
   TODO = 'ToDo',
   TODO_IN_PROGRESS = 'ToDo In Progress',
   TODO_DONE = 'ToDo Done',

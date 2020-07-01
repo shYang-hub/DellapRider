@@ -15,7 +15,8 @@ import { DeliveryNavigator } from './delivery.navigator';
 import { DelFinNavigator } from './delFin.navigator';
 import { AppRoute } from './app-routes';
 import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
-import { HomeIcon, InfoIcon, OrderIcon, DeliveryIcon, DelFinIcon } from '../assets/icons';
+import { HomeIcon, BullhornIcon, FoodIcon, MotorbikeIcon, CheckboxCircleIcon,
+   AccIcon, ShieldAccIcon, CashRefundAccIcon, PointIcon, SettingIcon } from '../assets/icons';
 
 type HomeDrawerNavigatorParams = {
   [AppRoute.NOTICE]: undefined;
@@ -77,17 +78,17 @@ const HomeBottomNavigator = (): React.ReactElement => (
     <BottomTab.Screen
       name={AppRoute.ORDER}
       component={OrderNavigator}
-      options={{ title: '주문', tabBarIcon: OrderIcon }}
+      options={{ title: '주문', tabBarIcon: FoodIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.DELIVERY}
       component={DeliveryNavigator}
-      options={{ title: '배달중', tabBarIcon: DeliveryIcon }}
+      options={{ title: '배달중', tabBarIcon: MotorbikeIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.DEL_FIN}
       component={DelFinNavigator}
-      options={{ title: '완료', tabBarIcon: DelFinIcon }}
+      options={{ title: '완료', tabBarIcon: CheckboxCircleIcon }}
     />
   </BottomTab.Navigator>
 );
@@ -98,54 +99,42 @@ export const HomeNavigator = (): React.ReactElement => (
     <Drawer.Screen
       name={AppRoute.HOME}
       component={HomeBottomNavigator}
-      options={{ title: 'Home', drawerIcon: HomeIcon }}
+      options={{ title: '홈', drawerIcon: HomeIcon }}
     />
     <Drawer.Screen
-      name={AppRoute.ABOUT}
+      name={AppRoute.NOTICE}
       component={AboutScreen}
-      options={{ title: 'About', drawerIcon: InfoIcon }}
+      options={{ title: '공지', drawerIcon: BullhornIcon }}
     />
-  </Drawer.Navigator>
-  // <Drawer.Navigator drawerContent={HomeDrawer}>
-  //   <Drawer.Screen
-  //     name={AppRoute.HOME}
-  //     component={HomeBottomNavigator}
-  //     options={{ title: '홈', drawerIcon: HomeIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.NOTICE}
-  //     component={AboutScreen}
-  //     options={{ title: '공지', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.ACC_INFO}
-  //     component={AboutScreen}
-  //     options={{ title: '계정정보', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.ACC_INFO_BNK}
-  //     component={AboutScreen}
-  //     options={{ title: '계좌정보', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.WITHDRAWAL}
-  //     component={AboutScreen}
-  //     options={{ title: '출금', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.POINT_RPT}
-  //     component={AboutScreen}
-  //     options={{ title: '포인트내역', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.DEL_RPT}
-  //     component={AboutScreen}
-  //     options={{ title: '대행내역', drawerIcon: InfoIcon }}
-  //   />
-  //   <Drawer.Screen
-  //     name={AppRoute.APP_SET}
-  //     component={AboutScreen}
-  //     options={{ title: '세팅', drawerIcon: InfoIcon }}
-  //   />
+    <Drawer.Screen
+      name={AppRoute.ACC_INFO}
+      component={AboutScreen}
+      options={{ title: '계정정보', drawerIcon: AccIcon }}
+    />
+    <Drawer.Screen
+      name={AppRoute.ACC_INFO_BNK}
+      component={AboutScreen}
+      options={{ title: '계좌정보', drawerIcon: ShieldAccIcon }}
+    />
+    <Drawer.Screen
+      name={AppRoute.WITHDRAWAL}
+      component={AboutScreen}
+      options={{ title: '출금', drawerIcon: CashRefundAccIcon }}
+    />
+    <Drawer.Screen
+      name={AppRoute.POINT_RPT}
+      component={AboutScreen}
+      options={{ title: '포인트내역', drawerIcon: PointIcon }}
+    />
+    <Drawer.Screen
+      name={AppRoute.DEL_RPT}
+      component={AboutScreen}
+      options={{ title: '대행내역', drawerIcon: MotorbikeIcon}}
+    />
+    <Drawer.Screen
+      name={AppRoute.APP_SET}
+      component={AboutScreen}
+      options={{ title: '설정', drawerIcon: SettingIcon }}
+    />
   </Drawer.Navigator>
 );
