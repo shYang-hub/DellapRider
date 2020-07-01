@@ -22,7 +22,7 @@ type HomeDrawerNavigatorParams = {
   [AppRoute.ACC_INFO]: undefined;
   [AppRoute.ACC_INFO_BNK]: undefined;
   [AppRoute.WITHDRAWAL]: undefined;
-  [AppRoute.POINT_HIST]: undefined;
+  [AppRoute.POINT_RPT]: undefined;
   [AppRoute.DEL_RPT]: undefined;
   [AppRoute.APP_SET]: undefined;
 }
@@ -105,5 +105,47 @@ export const HomeNavigator = (): React.ReactElement => (
       component={AboutScreen}
       options={{ title: 'About', drawerIcon: InfoIcon }}
     />
+  </Drawer.Navigator>
+  // <Drawer.Navigator drawerContent={HomeDrawer}>
+  //   <Drawer.Screen
+  //     name={AppRoute.HOME}
+  //     component={HomeBottomNavigator}
+  //     options={{ title: '홈', drawerIcon: HomeIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.NOTICE}
+  //     component={AboutScreen}
+  //     options={{ title: '공지', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.ACC_INFO}
+  //     component={AboutScreen}
+  //     options={{ title: '계정정보', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.ACC_INFO_BNK}
+  //     component={AboutScreen}
+  //     options={{ title: '계좌정보', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.WITHDRAWAL}
+  //     component={AboutScreen}
+  //     options={{ title: '출금', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.POINT_RPT}
+  //     component={AboutScreen}
+  //     options={{ title: '포인트내역', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.DEL_RPT}
+  //     component={AboutScreen}
+  //     options={{ title: '대행내역', drawerIcon: InfoIcon }}
+  //   />
+  //   <Drawer.Screen
+  //     name={AppRoute.APP_SET}
+  //     component={AboutScreen}
+  //     options={{ title: '세팅', drawerIcon: InfoIcon }}
+  //   />
   </Drawer.Navigator>
 );

@@ -15,7 +15,7 @@ export const DelFinScreen = (props: DelFinScreenProps): SafeAreaLayoutElement =>
     style={styles.safeArea}
     insets={SaveAreaInset.TOP}>
     <Toolbar
-      title='React Navigation Ex 🐱'
+      title='14,000'
       backIcon={MenuIcon}
       onBackPress={props.navigation.toggleDrawer}
     />

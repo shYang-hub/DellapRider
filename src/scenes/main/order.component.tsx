@@ -1,6 +1,8 @@
 import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
+import { ListRenderItemInfo, View } from 'react-native';
 import {
+  Button,
+  Divider,
   Input,
   Layout,
   List,
@@ -73,11 +75,35 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
   return (
     <Layout style={styles.container}>
-    <Toolbar
-      title='React Navigation Ex 🐱'
-      backIcon={MenuIcon}
-      onBackPress={props.navigation.toggleDrawer}
-    />
+      <Toolbar
+        title='14,000'
+        backIcon={MenuIcon}
+        onBackPress={props.navigation.toggleDrawer}
+      />
+      <Divider/>
+      <View style = { styles.buttonArea } >
+        <Button
+          style={ styles.button }
+          size='tiny'
+          status= 'info'
+          appearance='filled'>
+          전  체
+        </Button>
+        <Button
+          style={ styles.button }
+          size='tiny'
+          status= 'info'
+          appearance='outline'>
+          관  할
+        </Button>
+        <Button
+          style={ styles.button }
+          size='tiny'
+          status= 'info'
+          appearance='ghost'>
+          공  유
+        </Button>
+      </View>
       <List
         style={styles.list}
         data={todos}
@@ -108,4 +134,14 @@ const themedStyles = StyleService.create({
     width: '50%',
     marginVertical: 12,
   },
+  buttonArea:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+  },
+  button:{
+    width: 80,
+    height: 1,
+    fontSize: 20,
+  }
 });

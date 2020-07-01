@@ -14,7 +14,7 @@ export enum AppRoute {
   ACC_INFO      ='Account Information',       /*계정정보*/
   ACC_INFO_BNK  ='Bank Account Information',  /*계좌정보*/
   WITHDRAWAL    ='Withdrawal',                /*출금*/
-  POINT_HIST    ='Point History',             /*포인트 내역*/
+  POINT_RPT    ='Point History',             /*포인트 내역*/
   DEL_RPT       ='Delivery Report',           /*대행내역*/
   APP_SET       ='Application Setting',       /*앱설정*/
   /**************************사이드 매뉴**************************/
@@ -22,7 +22,7 @@ export enum AppRoute {
   SIGN_IN = 'Sign In',
   SIGN_UP = 'Sign Up',
   RESET_PASSWORD = 'Reset Passrord',
-  HOME = 'Home',
+  HOME = 'Home11',
   TODO = 'ToDo',
   TODO_IN_PROGRESS = 'ToDo In Progress',
   TODO_DONE = 'ToDo Done',
