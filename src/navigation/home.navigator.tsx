@@ -14,7 +14,9 @@ import { OrderNavigator } from './order.navigator';
 import { DeliveryNavigator } from './delivery.navigator';
 import { DelFinNavigator } from './delFin.navigator';
 import { AppRoute } from './app-routes';
-import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
+import { HomeDrawer, HomeTabBar } from '../scenes/home';
+import { NoticeScreen, AccInfoScreen, BnkAccInfoScreen, WithdrawalScreen, PointRptScreen, DelRptScreen, AppSettingScreen } from '../scenes/menu';
+
 import { HomeIcon, BullhornIcon, FoodIcon, MotorbikeIcon, CheckboxCircleIcon,
    AccIcon, ShieldAccIcon, CashRefundAccIcon, PointIcon, SettingIcon } from '../assets/icons';
 
@@ -46,9 +48,39 @@ export type DelFinTabNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.DEL_FIN>,
   DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
 
-export interface AboutScreenProps {
-  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.ABOUT>;
-  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.ABOUT>;
+export interface NoticeScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.NOTICE>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.NOTICE>;
+}
+
+export interface AccInfoScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.ACC_INFO>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.ACC_INFO>;
+}
+
+export interface BnkAccInfoScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.ACC_INFO_BNK>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.ACC_INFO_BNK>;
+}
+
+export interface WitdrawalScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.WITHDRAWAL>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.WITHDRAWAL>;
+}
+
+export interface PointRptScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.POINT_RPT>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.POINT_RPT>;
+}
+
+export interface DelRptScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.DEL_RPT>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.DEL_RPT>;
+}
+
+export interface AppSettingScreenProps {
+  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.APP_SET>;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.APP_SET>;
 }
 
 export type BottomHomeScreenProps = BottomTabBarProps & {
@@ -103,37 +135,37 @@ export const HomeNavigator = (): React.ReactElement => (
     />
     <Drawer.Screen
       name={AppRoute.NOTICE}
-      component={AboutScreen}
+      component={NoticeScreen}
       options={{ title: '공지', drawerIcon: BullhornIcon }}
     />
     <Drawer.Screen
       name={AppRoute.ACC_INFO}
-      component={AboutScreen}
+      component={AccInfoScreen}
       options={{ title: '계정정보', drawerIcon: AccIcon }}
     />
     <Drawer.Screen
       name={AppRoute.ACC_INFO_BNK}
-      component={AboutScreen}
+      component={BnkAccInfoScreen}
       options={{ title: '계좌정보', drawerIcon: ShieldAccIcon }}
     />
     <Drawer.Screen
       name={AppRoute.WITHDRAWAL}
-      component={AboutScreen}
+      component={WithdrawalScreen}
       options={{ title: '출금', drawerIcon: CashRefundAccIcon }}
     />
     <Drawer.Screen
       name={AppRoute.POINT_RPT}
-      component={AboutScreen}
+      component={PointRptScreen}
       options={{ title: '포인트내역', drawerIcon: PointIcon }}
     />
     <Drawer.Screen
       name={AppRoute.DEL_RPT}
-      component={AboutScreen}
+      component={DelRptScreen}
       options={{ title: '대행내역', drawerIcon: MotorbikeIcon}}
     />
     <Drawer.Screen
       name={AppRoute.APP_SET}
-      component={AboutScreen}
+      component={AppSettingScreen}
       options={{ title: '설정', drawerIcon: SettingIcon }}
     />
   </Drawer.Navigator>

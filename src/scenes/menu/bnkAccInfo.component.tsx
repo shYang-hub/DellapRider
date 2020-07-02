@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Divider, Layout, Text } from '@ui-kitten/components';
-import { AboutScreenProps } from '../../navigation/home.navigator';
+import { BnkAccInfoScreenProps } from '../../navigation/home.navigator';
 import { Toolbar } from '../../components/toolbar.component';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
 
-export const AboutScreen = (props: AboutScreenProps): SafeAreaLayoutElement => (
+export const BnkAccInfoScreen = (props: BnkAccInfoScreenProps): SafeAreaLayoutElement => (
   <SafeAreaLayout
     style={styles.safeArea}
     insets={SaveAreaInset.TOP}>
@@ -16,7 +16,7 @@ export const AboutScreen = (props: AboutScreenProps): SafeAreaLayoutElement => (
     <Divider/>
     <Layout style={styles.container}>
       <Text category='h1'>
-        ABOUT
+        Bank Account Info
       </Text>
     </Layout>
   </SafeAreaLayout>
