@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Divider, Layout, LayoutProps, Text } from '@ui-kitten/components';
+import { Divider, Layout, LayoutProps, Text, Select, SelectItem, IndexPath } from '@ui-kitten/components';
 
-export interface ProfileSettingProps extends LayoutProps {
+export interface MenuSelectProps extends LayoutProps {
   hint?: string;
   value: string;
 }
 
-export const ProfileSetting = (props: ProfileSettingProps): React.ReactElement => {
+export const MenuSelect = (props: MenuSelectProps): React.ReactElement => {
 
   const { style, hint, value, ...layoutProps } = props;
+
+  const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
+
+  const bnkCode = [ 'IBK', '경남', '부산' ];
 
   const renderHintElement = (): React.ReactElement => (
     <Text
@@ -19,6 +23,10 @@ export const ProfileSetting = (props: ProfileSettingProps): React.ReactElement =
     </Text>
   );
 
+  const selectBnkCode = (): SelectItem => (
+    <SelectItem title='Option'/>
+  );
+
   return (
     <React.Fragment>
       <Layout
@@ -26,9 +34,13 @@ export const ProfileSetting = (props: ProfileSettingProps): React.ReactElement =
         {...layoutProps}
         style={[styles.container, style]}>
         {hint && renderHintElement()}
-        <Text category='s1'>
-          {value}
-        </Text>
+        <Select
+        style={ styles.select }
+        selectedIndex={selectedIndex}
+        onSelect={index => setSelectedIndex(index)}
+        size='small'>
+        {selectBnkCode()}
+      </Select>
       </Layout>
       <Divider/>
     </React.Fragment>
@@ -41,4 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  select:{
+    minWidth: 200
+  }
 });

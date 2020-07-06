@@ -5,79 +5,50 @@ import { AccInfoScreenProps } from '../../navigation/home.navigator';
 import { Toolbar } from '../../components/toolbar.component';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
 
-import { ProfileAvatar } from './extra/profile-avatar.component';
-import { ProfileSetting } from './extra/profile-setting.component';
-import { Profile } from './extra/data';
-
-const profile: Profile = Profile.jenniferGreen();
+import { MenuText } from './extra/menu-text.component';
+import { AccInfoData } from './data/accInfoData';
+import { MenuInput } from './extra/menu-input.component';
+const accInfoData: AccInfoData = AccInfoData.jenniferGreen();
 
 export const AccInfoScreen = (props: AccInfoScreenProps): SafeAreaLayoutElement => (
   <SafeAreaLayout
     style={styles.safeArea}
     insets={SaveAreaInset.TOP}>
     <Toolbar
-      title='React Navigation Ex 🐱'
+      title='계정 정보'
       onBackPress={props.navigation.goBack}
     />
     <Divider/>
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}>
-      <ProfileAvatar
-        style={styles.photo}
-        source={profile.photo}
-        /* editButton={renderPhotoButton}*/
-      />
-      <Text
-        style={[styles.description, styles.section]}
-        appearance='hint'>
-        {profile.description}
-      </Text>
-      <ProfileSetting
-        style={[styles.setting, styles.section]}
-        hint='First Name'
-        value={profile.firstName}
-      />
-      <ProfileSetting
+    <ScrollView>
+      <MenuText
         style={styles.setting}
-        hint='Last Name'
-        value={profile.lastName}
+        hint='아이디'
+        value={accInfoData.id}
       />
-      <ProfileSetting
+      <MenuText
         style={styles.setting}
-        hint='Gender'
-        value={profile.gender}
+        hint='이름'
+        value={accInfoData.name}
       />
-      <ProfileSetting
+      <MenuText
         style={styles.setting}
-        hint='Age'
-        value={`${profile.age}`}
+        hint='연락처'
+        value={accInfoData.phone}
       />
-      <ProfileSetting
+      <MenuText
         style={styles.setting}
-        hint='Weight'
-        value={`${profile.weight} kg`}
+        hint='소속'
+        value={accInfoData.dept}
       />
-      <ProfileSetting
+      <MenuInput
         style={styles.setting}
-        hint='Height'
-        value={`${profile.height} cm`}
-      />
-      <ProfileSetting
-        style={[styles.setting, styles.section]}
-        hint='Email'
-        value={profile.email}
-      />
-      <ProfileSetting
-        style={styles.setting}
-        hint='Phone Number'
-        value={profile.phoneNumber}
+        hint='소속'
       />
       <Button
         style={styles.doneButton}
         /*onPress={onDoneButtonPress}*/
         >
-        DONE
+        비밀번호 변경
       </Button>
     </ScrollView>
   </SafeAreaLayout>
@@ -96,21 +67,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'background-basic-color-2',
   },
   contentContainer: {
-    paddingVertical: 24,
+    // paddingVertical: 24,
     // backgroundColor: 'background-basic-color-2',
-  },
-  photo: {
-    alignSelf: 'center',
-    width: 320,
-    height: 320,
-    borderRadius: 16,
-  },
-  photoButton: {
-    right: 16,
-    top: 32,
-    width: 48,
-    height: 48,
-    borderRadius: 24,
   },
   description: {
     padding: 24,

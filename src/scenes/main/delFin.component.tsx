@@ -19,7 +19,6 @@ export const DelFinScreen = (props: DelFinScreenProps): SafeAreaLayoutElement =>
       backIcon={MenuIcon}
       onBackPress={props.navigation.toggleDrawer}
     />
-    <Divider/>
     <Layout style={styles.container}>
       <Text category='h1'>
         Delivery Finsh
