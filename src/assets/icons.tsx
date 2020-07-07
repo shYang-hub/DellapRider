@@ -1,6 +1,10 @@
 import React from 'react';
 import { Icon, IconElement } from '@ui-kitten/components';
 
+export const CreditCardIcon = (props): IconElement => (
+  <Icon {...props} name='credit-card' pack='material'/>
+);
+
 export const HomeIcon = (props): IconElement => (
   <Icon {...props} name='home-outline' pack='material'/>
 );

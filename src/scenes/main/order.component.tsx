@@ -19,7 +19,7 @@ import { ProgressBar } from '../../components/progress-bar.component';
 import { SearchIcon } from '../../assets/icons';
 import { Todo } from '../../data/todo.model';
 import { Toolbar } from '../../components/toolbar.component';
-import { MenuIcon } from '../../assets/icons';
+import { MenuIcon, CreditCardIcon } from '../../assets/icons';
 
 const allTodos: Todo[] = [
   Todo.mocked0(),
@@ -58,18 +58,22 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
       style={styles.item}
       onPress={() => navigateOrderDetails(index)}>
       <Text category='s1'>
-        {item.title}
+        맘스터치 전포점
       </Text>
       <Text
         appearance='hint'
         category='c1'>
-        {item.description}
+        부산진구 전포동 xx번지
       </Text>
-      <ProgressBar
-        style={styles.itemProgressBar}
-        progress={item.progress}
-        text={`${item.progress}%`}
-      />
+      <View style={ styles.test }>
+      <Button size='tiny' accessoryLeft={CreditCardIcon} >
+      카드
+      </Button>
+      <Text
+        category='c1'>
+        25,000 | 3,000 | 1.9 Km
+      </Text>
+      </View>
     </ListItem>
   );
 
@@ -143,5 +147,8 @@ const themedStyles = StyleService.create({
     width: 80,
     height: 1,
     fontSize: 20,
+  },
+  test:{
+    flexDirection: 'row',
   }
 });

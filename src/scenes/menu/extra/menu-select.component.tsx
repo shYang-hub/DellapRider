@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Divider, Layout, LayoutProps, Text, Select, SelectItem, IndexPath } from '@ui-kitten/components';
 
+import { SelectBox } from './select-box.component';
+
 export interface MenuSelectProps extends LayoutProps {
   hint?: string;
   value: string;
@@ -10,10 +12,7 @@ export interface MenuSelectProps extends LayoutProps {
 export const MenuSelect = (props: MenuSelectProps): React.ReactElement => {
 
   const { style, hint, value, ...layoutProps } = props;
-
-  const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
-
-  const bnkCode = [ 'IBK', '경남', '부산' ];
+  const bnkCode = [ '부산', '경남', '우리', '신한', '카카오뱅크', '국민' ];
 
   const renderHintElement = (): React.ReactElement => (
     <Text
@@ -23,10 +22,6 @@ export const MenuSelect = (props: MenuSelectProps): React.ReactElement => {
     </Text>
   );
 
-  const selectBnkCode = (): SelectItem => (
-    <SelectItem title='Option'/>
-  );
-
   return (
     <React.Fragment>
       <Layout
@@ -34,13 +29,8 @@ export const MenuSelect = (props: MenuSelectProps): React.ReactElement => {
         {...layoutProps}
         style={[styles.container, style]}>
         {hint && renderHintElement()}
-        <Select
-        style={ styles.select }
-        selectedIndex={selectedIndex}
-        onSelect={index => setSelectedIndex(index)}
-        size='small'>
-        {selectBnkCode()}
-      </Select>
+      <SelectBox
+      item={bnkCode}/>
       </Layout>
       <Divider/>
     </React.Fragment>

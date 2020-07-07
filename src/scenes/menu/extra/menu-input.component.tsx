@@ -28,7 +28,6 @@ export const MenuInput = (props: MenuInputProps): React.ReactElement => {
         {hint && renderHintElement()}
         <Input style = { styles.input }
         size='small'>
-        dd
         </Input>
       </Layout>
       <Divider/>
