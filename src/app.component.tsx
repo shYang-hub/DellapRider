@@ -12,7 +12,6 @@ export default (): React.ReactFragment => {
 
   // This value is used to determine the initial screen
   const isAuthorized: boolean = false;
-
   return (
     <React.Fragment>
       <IconRegistry icons={ [ EvaIconsPack, MaterialIconsPack ] }/>

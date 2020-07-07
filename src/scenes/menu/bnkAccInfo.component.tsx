@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { Divider, Layout, Text, Button } from '@ui-kitten/components';
+import { Divider, Layout, Text, Button, SelectOptionType } from '@ui-kitten/components';
 import { BnkAccInfoScreenProps } from '../../navigation/home.navigator';
 import { Toolbar } from '../../components/toolbar.component';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
@@ -8,6 +8,7 @@ import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../comp
 import { MenuText } from './extra/menu-text.component';
 import { MenuSelect } from './extra/menu-select.component';
 import { MenuInput } from './extra/menu-input.component';
+import { SelectShowcase } from './select-showcase.component';
 
 export const BnkAccInfoScreen = (props: BnkAccInfoScreenProps): SafeAreaLayoutElement => (
   <SafeAreaLayout
@@ -31,6 +32,7 @@ export const BnkAccInfoScreen = (props: BnkAccInfoScreenProps): SafeAreaLayoutEl
         style={styles.setting}
         hint='예금주'
       />
+      <SelectShowcase/>
       <Button
         style={styles.doneButton}
         /*onPress={onDoneButtonPress}*/
