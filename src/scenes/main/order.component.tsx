@@ -12,6 +12,7 @@ import {
   StyleService,
   Text,
   useStyleSheet,
+  Card,
 } from '@ui-kitten/components';
 import { OrderScreenProps } from '../../navigation/order.navigator';
 import { AppRoute } from '../../navigation/app-routes';
@@ -54,27 +55,31 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
   };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
-    <ListItem
-      style={styles.item}
-      onPress={() => navigateOrderDetails(index)}>
-      <Text category='s1'>
+    <Card style={styles.card} status='success' onPress={() => navigateOrderDetails(index)}>
+        <Text category='s1'>
         맘스터치 전포점
-      </Text>
-      <Text
+        </Text>
+
+        <Divider/>
+
+        <Text
         appearance='hint'
         category='c1'>
         부산진구 전포동 xx번지
-      </Text>
-      <View style={ styles.test }>
-      <Button size='tiny' accessoryLeft={CreditCardIcon} >
-      카드
-      </Button>
-      <Text
-        category='c1'>
-        25,000 | 3,000 | 1.9 Km
-      </Text>
-      </View>
-    </ListItem>
+        </Text>
+
+        <Divider/>
+
+        <View style={ styles.test }>
+          <Button accessoryLeft={CreditCardIcon} style={ styles.payGbn } size='tiny'>
+          카드
+          </Button>
+          <Text
+          category='c1'>
+          25,000 | 3,000 | 1.9 Km
+          </Text>
+        </View>
+    </Card>
   );
 
   return (
@@ -145,10 +150,19 @@ const themedStyles = StyleService.create({
   },
   button:{
     width: 80,
-    height: 1,
-    fontSize: 20,
+  },
+  payGbn:{
+    width: 70,
+    height: 5,
+    marginRight:10
   },
   test:{
     flexDirection: 'row',
-  }
+    padding: 0,
+  },
+  card: {
+    margin: 2,
+    marginHorizontal : -20 ,
+    paddingBottom: -20,
+  },
 });
