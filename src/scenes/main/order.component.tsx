@@ -56,26 +56,19 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
     <Card style={styles.card} status='success' onPress={() => navigateOrderDetails(index)}>
-        <Text category='s1'>
+        <Text category='h5'>
         맘스터치 전포점
         </Text>
 
-        <Divider/>
-
-        <Text
-        appearance='hint'
-        category='c1'>
+        <Text category='h6'>
         부산진구 전포동 xx번지
         </Text>
 
-        <Divider/>
-
-        <View style={ styles.test }>
-          <Button accessoryLeft={CreditCardIcon} style={ styles.payGbn } size='tiny'>
-          카드
-          </Button>
-          <Text
-          category='c1'>
+        <View style={ styles.test } >
+          <View style={styles.controlContainer}>
+            <Text style={styles.text} status='control'>카드</Text>
+          </View>
+          <Text category='h6'>
           25,000 | 3,000 | 1.9 Km
           </Text>
         </View>
@@ -154,15 +147,21 @@ const themedStyles = StyleService.create({
   payGbn:{
     width: 70,
     height: 5,
-    marginRight:10
+    marginRight:10,
   },
   test:{
     flexDirection: 'row',
-    padding: 0,
   },
   card: {
     margin: 2,
-    marginHorizontal : -20 ,
-    paddingBottom: -20,
+    height: 100,
+    paddingTop: 0,
+  },
+  controlContainer: {
+    borderRadius: 6,
+    margin: 4,
+    paddingHorizontal: 4,
+    backgroundColor: '#3366FF',
+    height:20,
   },
 });
