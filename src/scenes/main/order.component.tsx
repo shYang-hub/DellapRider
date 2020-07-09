@@ -55,12 +55,12 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
   };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
-    <Card style={styles.card} status='success' onPress={() => navigateOrderDetails(index)}>
-        <Text category='h5'>
+    <Card bodyStyle={{ padding: "0"}} style={styles.card} status='success' onPress={() => navigateOrderDetails(index)}>
+        <Text category='s1'>
         맘스터치 전포점
         </Text>
 
-        <Text category='h6'>
+        <Text category='s1'>
         부산진구 전포동 xx번지
         </Text>
 
@@ -68,7 +68,7 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
           <View style={styles.controlContainer}>
             <Text style={styles.text} status='control'>카드</Text>
           </View>
-          <Text category='h6'>
+          <Text category='s1' style={{ marginTop:4}}>
           25,000 | 3,000 | 1.9 Km
           </Text>
         </View>
