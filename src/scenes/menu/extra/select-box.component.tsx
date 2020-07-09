@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Select, SelectElement, SelectProps, IndexPath, SelectItem } from '@ui-kitten/components';
-import Reactotron from 'reactotron-react-native'
 
 export interface SelectShowcaseProps{
   item: string;
@@ -10,8 +9,6 @@ export interface SelectShowcaseProps{
 export const SelectBox = (props:SelectShowcaseProps): SelectElement => {
 
   const bnkCode = props.item;
-  Reactotron.log( props );
-  // Reactotron.log( props );
 
 
   const renderOption = (title) => (

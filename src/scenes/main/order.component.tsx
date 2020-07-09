@@ -22,6 +22,8 @@ import { Todo } from '../../data/todo.model';
 import { Toolbar } from '../../components/toolbar.component';
 import { MenuIcon, CreditCardIcon } from '../../assets/icons';
 
+import Reactotron from 'reactotron-react-native'
+
 const allTodos: Todo[] = [
   Todo.mocked0(),
   Todo.mocked1(),
@@ -44,7 +46,6 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
     const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
       return todo.title.toLowerCase().includes(query.toLowerCase());
     });
-
     setTodos(nextTodos);
     setQuery(query);
   };
@@ -55,23 +56,33 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
   };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
-    <Card bodyStyle={{ padding: "0"}} style={styles.card} status='success' onPress={() => navigateOrderDetails(index)}>
-        <Text category='s1'>
-        맘스터치 전포점
-        </Text>
+    <Card style={styles.card} status='warning' onPress={() => navigateOrderDetails(index)}>
+      <View style={styles.cardBody}>
+        <View>
+          <Text category='s1'>
+          맘스터치 전포점
+          </Text>
 
-        <Text category='s1'>
-        부산진구 전포동 xx번지
-        </Text>
+          <Text category='s1'>
+          부산진구 전포동 xx번지
+          </Text>
 
-        <View style={ styles.test } >
-          <View style={styles.controlContainer}>
-            <Text style={styles.text} status='control'>카드</Text>
+          <View style={ styles.test }>
+            <View style={styles.controlContainer}>
+              <Text status='control'>카드</Text>
+            </View>
+            <Text category='s1' style={{ marginTop:4}}>
+            25,000 | 3,000 | 1.9 Km
+            </Text>
           </View>
-          <Text category='s1' style={{ marginTop:4}}>
-          25,000 | 3,000 | 1.9 Km
+        </View>
+
+        <View style={styles.controlContainer1}>
+          <Text status='control'>
+            5분
           </Text>
         </View>
+      </View>
     </Card>
   );
 
@@ -127,15 +138,6 @@ const themedStyles = StyleService.create({
     flex: 1,
     backgroundColor: 'background-basic-color-1',
   },
-  item: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingHorizontal: 12,
-  },
-  itemProgressBar: {
-    width: '50%',
-    marginVertical: 12,
-  },
   buttonArea:{
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -144,18 +146,12 @@ const themedStyles = StyleService.create({
   button:{
     width: 80,
   },
-  payGbn:{
-    width: 70,
-    height: 5,
-    marginRight:10,
-  },
   test:{
     flexDirection: 'row',
   },
   card: {
     margin: 2,
     height: 100,
-    paddingTop: 0,
   },
   controlContainer: {
     borderRadius: 6,
@@ -164,4 +160,19 @@ const themedStyles = StyleService.create({
     backgroundColor: '#3366FF',
     height:20,
   },
+  controlContainer1: {
+    margin: 4,
+    paddingHorizontal: 20,
+    padding: 35,
+    // backgroundColor: '#FF3D71',
+    // backgroundColor: '#00E096',
+    backgroundColor: '#FFAA00',
+    height:95,
+    marginVertical:-10,
+    marginHorizontal:-10,
+  },
+  cardBody:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
