@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { light, mapping } from '@eva-design/eva';
+import { light, mapping, dark } from '@eva-design/eva';
+import { cardMapping } from './cardMapping.json';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { MaterialIconsPack } from './assets/Material-icons'
@@ -16,8 +17,8 @@ export default (): React.ReactFragment => {
     <React.Fragment>
       <IconRegistry icons={ [ EvaIconsPack, MaterialIconsPack ] }/>
       <ApplicationProvider
-        mapping={mapping}
-        theme={light}>
+        mapping={ mapping }
+        theme={dark}>
         <SafeAreaProvider>
           <NavigationContainer>
             <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH}/>
