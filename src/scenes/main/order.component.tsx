@@ -22,18 +22,19 @@ import { Todo } from '../../data/todo.model';
 import { Toolbar } from '../../components/toolbar.component';
 import { MenuIcon, CreditCardIcon } from '../../assets/icons';
 
+import axios from 'axios';
 import Reactotron from 'reactotron-react-native'
 
 const allTodos: Todo[] = [
-  Todo.mocked0(),
-  Todo.mocked1(),
-  Todo.mocked2(),
-  Todo.mocked0(),
-  Todo.mocked1(),
-  Todo.mocked2(),
-  Todo.mocked0(),
-  Todo.mocked1(),
-  Todo.mocked2(),
+  // Todo.mocked0(),
+  // Todo.mocked1(),
+  // Todo.mocked2(),
+  // Todo.mocked0(),
+  // Todo.mocked1(),
+  // Todo.mocked2(),
+  // Todo.mocked0(),
+  // Todo.mocked1(),
+  // Todo.mocked2(),
 ];
 
 export const OrderScreen = (props: OrderScreenProps): ListElement => {
@@ -54,6 +55,37 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
     const { [todoIndex]: todo } = todos;
     props.navigation.navigate(AppRoute.ORDER_DETAILS, { todo });
   };
+
+  const getOrderList = () => {
+      axios
+        .get('http://192.168.0.41:8080/api/delivery/delivery'
+        ,{
+          params:{
+            stoBrcofcId     : 'B0001',
+            // riderId         :
+            dlvryRecvDtStd  : '20200712140000',
+            dlvryRecvDtEnd  : '20200712163000',
+            dlvryStateCd    : '01'
+          }
+        }
+      )
+        .then(function(response) {
+          // handle success
+          Reactotron.log(response);
+          Reactotron.log(response.data);
+          // alert(JSON.stringify(response.data));
+        })
+        .catch(function(error) {
+          // handle error
+          // Reactotron.log(error.response);
+          // Reactotron.log(error);
+          alert(error.message);
+        })
+        .finally(function(response) {
+          // always executed
+          alert('Finally called');
+        });
+    };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
     <Card style={styles.card} status='warning' onPress={() => navigateOrderDetails(index)}>
