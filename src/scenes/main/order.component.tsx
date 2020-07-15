@@ -24,24 +24,19 @@ import { MenuIcon, CreditCardIcon } from '../../assets/icons';
 
 import axios from 'axios';
 import Reactotron from 'reactotron-react-native'
+import { Order } from '../../data/order.model';
 
 const allTodos: Todo[] = [
-  // Todo.mocked0(),
-  // Todo.mocked1(),
-  // Todo.mocked2(),
-  // Todo.mocked0(),
-  // Todo.mocked1(),
-  // Todo.mocked2(),
-  // Todo.mocked0(),
-  // Todo.mocked1(),
-  // Todo.mocked2(),
 ];
+const orderList: Order[] = [];
 
 export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
   const [todos, setTodos] = React.useState<Todo[]>(allTodos);
   const [query, setQuery] = React.useState<string>('');
   const styles = useStyleSheet(themedStyles);
+
+  const [orders, setOrders] = React.useState<Todo[]>(orderList);
 
   const onChangeQuery = (query: string): void => {
     const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
@@ -57,36 +52,51 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
   };
 
   const getOrderList = () => {
-      axios
-        // .get('http://192.168.0.41:8080/api/delivery/delivery'
-        .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
-        ,{
-          params:{
-            // stoBrcofcId     : 'B0001',
-            // riderId         :
-            dlvryRecvDtStd  : '20200714130000',
-            dlvryRecvDtEnd  : '20200714163000',
-            // dlvryStateCd    : '01'
-          }
-        }
-      )
-        .then(function(response) {
-          // handle success
-          Reactotron.log(response);
-          Reactotron.log(response.data);
-          // alert(response);
-          // alert(JSON.stringify(response.data));
-        })
-        .catch(function(error) {
-          // handle error
-          // Reactotron.log(error.response);
-          // Reactotron.log(error);
-          // alert(error.message);
-        })
-        .finally(function(response) {
-          // always executed
-          // alert('Finally called');
-        });
+    // const allTodos: Todo[] = [
+    //   Todo.mocked0(),
+    // ];
+    allTodos.push( Todo.mocked0() );
+    setOrders( allTodos );
+    Reactotron.log( allTodos );
+      // axios
+      //   // .get('http://192.168.0.41:8080/api/delivery/delivery'
+      //   .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
+      //   ,{
+      //     params:{
+      //       // stoBrcofcId     : 'B0001',
+      //       // riderId         :
+      //       dlvryRecvDtStd  : '20200714130000',
+      //       dlvryRecvDtEnd  : '20200714163000',
+      //       // dlvryStateCd    : '01'
+      //     }
+      //   }
+      // )
+      //   .then(function(response) {
+      //     // handle success
+      //     Reactotron.log( allTodos );
+      //     Reactotron.log( '최초 리스폰' );
+      //     Reactotron.log( response );
+      //     for( const lang of response.data.data )
+      //     {
+      //       Reactotron.log( 'lang' );
+      //       Reactotron.log( lang );
+      //       orderList.push( new Order( lang ) );
+      //     }
+      //     Reactotron.log( '리스트' );
+      //     Reactotron.log( orderList );
+      //     // alert(response);
+      //     // alert(JSON.stringify(response.data));
+      //   })
+      //   .catch(function(error) {
+      //     // handle error
+      //     // Reactotron.log(error.response);
+      //     // Reactotron.log(error);
+      //     // alert(error.message);
+      //   })
+      //   .finally(function(response) {
+      //     // always executed
+      //     // alert('Finally called');
+      //   });
     };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
@@ -134,7 +144,8 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
           size='tiny'
           status= 'info'
           appearance='filled'
-          onPress={getOrderList}>
+          onPress={getOrderList}
+          >
           전  체
         </Button>
         <Button
@@ -154,7 +165,7 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
       </View>
       <List
         style={styles.list}
-        data={todos}
+        data={orders}
         renderItem={renderOrder}
       />
     </Layout>
