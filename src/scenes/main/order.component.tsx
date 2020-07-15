@@ -58,14 +58,15 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
   const getOrderList = () => {
       axios
-        .get('http://192.168.0.41:8080/api/delivery/delivery'
+        // .get('http://192.168.0.41:8080/api/delivery/delivery'
+        .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
         ,{
           params:{
-            stoBrcofcId     : 'B0001',
+            // stoBrcofcId     : 'B0001',
             // riderId         :
-            dlvryRecvDtStd  : '20200712140000',
-            dlvryRecvDtEnd  : '20200712163000',
-            dlvryStateCd    : '01'
+            dlvryRecvDtStd  : '20200714130000',
+            dlvryRecvDtEnd  : '20200714163000',
+            // dlvryStateCd    : '01'
           }
         }
       )
@@ -73,17 +74,18 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
           // handle success
           Reactotron.log(response);
           Reactotron.log(response.data);
+          // alert(response);
           // alert(JSON.stringify(response.data));
         })
         .catch(function(error) {
           // handle error
           // Reactotron.log(error.response);
           // Reactotron.log(error);
-          alert(error.message);
+          // alert(error.message);
         })
         .finally(function(response) {
           // always executed
-          alert('Finally called');
+          // alert('Finally called');
         });
     };
 
@@ -131,7 +133,8 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
           style={ styles.button }
           size='tiny'
           status= 'info'
-          appearance='filled'>
+          appearance='filled'
+          onPress={getOrderList}>
           전  체
         </Button>
         <Button
