@@ -28,54 +28,52 @@ import { Order } from '../../data/order.model';
 
 let ordersList: Order[] = [];
 
+const getOrderList = () => {
+    axios
+      // .get('http://192.168.0.41:8080/api/delivery/delivery'
+      .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
+      ,{
+        params:{
+          // stoBrcofcId     : 'B0001',
+          // riderId         :
+          // dlvryRecvDtStd  : '20200714130000',
+          // dlvryRecvDtEnd  : '20200714163000',
+          // dlvryStateCd    : '01'
+        }
+      }
+    )
+      .then(function(response) {
+        // handle success
+
+        for( const order of response.data.data )
+        {
+          Reactotron.log( order );
+          ordersList.push( new Order( order ) );
+        }
+        // setOrders( ordersList );
+        Reactotron.log( ordersList );
+      })
+      .catch(function(error) {
+        // handle error
+        alert(error.message);
+      })
+      .finally(function(response) {
+        // always executed
+        // alert('Finally called');
+      });
+  };
+
 export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
-  const [orders, setOrders] = React.useState<Order[]>();
+  getOrderList();
+  
+  const [orders, setOrders] = React.useState<Order[]>( ordersList );
   const styles = useStyleSheet(themedStyles);
 
   const navigateOrderDetails = ( orderIndex: number ): void => {
     const { [orderIndex]: order } = ordersList;
     props.navigation.navigate(AppRoute.ORDER_DETAILS, { order });
   };
-
-  const getOrderList = () => {
-      axios
-        // .get('http://192.168.0.41:8080/api/delivery/delivery'
-        .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
-        ,{
-          params:{
-            // stoBrcofcId     : 'B0001',
-            // riderId         :
-            // dlvryRecvDtStd  : '20200714130000',
-            // dlvryRecvDtEnd  : '20200714163000',
-            // dlvryStateCd    : '01'
-          }
-        }
-      )
-        .then(function(response) {
-          // handle success
-          const updateOrderData: Order[] = [];
-
-          for( const order of response.data.data )
-          {
-            Reactotron.log( order );
-            updateOrderData.push( new Order( order ) );
-          }
-          Reactotron.log( ordersList );
-          ordersList = updateOrderData;
-          Reactotron.log( ordersList );
-          setOrders( updateOrderData );
-          Reactotron.log( updateOrderData );
-        })
-        .catch(function(error) {
-          // handle error
-          alert(error.message);
-        })
-        .finally(function(response) {
-          // always executed
-          // alert('Finally called');
-        });
-    };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
     <Card style={styles.card} status='warning' onPress={() => navigateOrderDetails(index)}>
@@ -124,7 +122,7 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
           size='tiny'
           status= 'info'
           appearance='filled'
-          onPress={getOrderList}
+          // onPress={getOrderList}
           >
           전  체
         </Button>

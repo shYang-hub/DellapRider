@@ -4,10 +4,9 @@ import { Divider, Layout, Text, Button } from '@ui-kitten/components';
 import { BnkAccInfoScreenProps } from '../../navigation/home.navigator';
 import { Toolbar } from '../../components/toolbar.component';
 import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
-
 import { MenuText } from './extra/menu-text.component';
-import { MenuSelect } from './extra/menu-select.component';
 import { MenuInput } from './extra/menu-input.component';
+import { MenuSelect } from './extra/menu-select.component';
 
 export const BnkAccInfoScreen = (props: BnkAccInfoScreenProps): SafeAreaLayoutElement => (
   <SafeAreaLayout
