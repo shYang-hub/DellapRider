@@ -26,77 +26,55 @@ import axios from 'axios';
 import Reactotron from 'reactotron-react-native'
 import { Order } from '../../data/order.model';
 
-const allTodos: Todo[] = [
-];
-const orderList: Order[] = [];
+let ordersList: Order[] = [];
 
 export const OrderScreen = (props: OrderScreenProps): ListElement => {
 
-  const [todos, setTodos] = React.useState<Todo[]>(allTodos);
-  const [query, setQuery] = React.useState<string>('');
+  const [orders, setOrders] = React.useState<Order[]>();
   const styles = useStyleSheet(themedStyles);
 
-  const [orders, setOrders] = React.useState<Todo[]>(orderList);
-
-  const onChangeQuery = (query: string): void => {
-    const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
-      return todo.title.toLowerCase().includes(query.toLowerCase());
-    });
-    setTodos(nextTodos);
-    setQuery(query);
-  };
-
-  const navigateOrderDetails = (todoIndex: number): void => {
-    const { [todoIndex]: todo } = todos;
-    props.navigation.navigate(AppRoute.ORDER_DETAILS, { todo });
+  const navigateOrderDetails = ( orderIndex: number ): void => {
+    const { [orderIndex]: order } = ordersList;
+    props.navigation.navigate(AppRoute.ORDER_DETAILS, { order });
   };
 
   const getOrderList = () => {
-    // const allTodos: Todo[] = [
-    //   Todo.mocked0(),
-    // ];
-    allTodos.push( Todo.mocked0() );
-    setOrders( allTodos );
-    Reactotron.log( allTodos );
-      // axios
-      //   // .get('http://192.168.0.41:8080/api/delivery/delivery'
-      //   .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
-      //   ,{
-      //     params:{
-      //       // stoBrcofcId     : 'B0001',
-      //       // riderId         :
-      //       dlvryRecvDtStd  : '20200714130000',
-      //       dlvryRecvDtEnd  : '20200714163000',
-      //       // dlvryStateCd    : '01'
-      //     }
-      //   }
-      // )
-      //   .then(function(response) {
-      //     // handle success
-      //     Reactotron.log( allTodos );
-      //     Reactotron.log( '최초 리스폰' );
-      //     Reactotron.log( response );
-      //     for( const lang of response.data.data )
-      //     {
-      //       Reactotron.log( 'lang' );
-      //       Reactotron.log( lang );
-      //       orderList.push( new Order( lang ) );
-      //     }
-      //     Reactotron.log( '리스트' );
-      //     Reactotron.log( orderList );
-      //     // alert(response);
-      //     // alert(JSON.stringify(response.data));
-      //   })
-      //   .catch(function(error) {
-      //     // handle error
-      //     // Reactotron.log(error.response);
-      //     // Reactotron.log(error);
-      //     // alert(error.message);
-      //   })
-      //   .finally(function(response) {
-      //     // always executed
-      //     // alert('Finally called');
-      //   });
+      axios
+        // .get('http://192.168.0.41:8080/api/delivery/delivery'
+        .get('http://deliverylabapi.gabia.io/api/delivery/delivery'
+        ,{
+          params:{
+            // stoBrcofcId     : 'B0001',
+            // riderId         :
+            // dlvryRecvDtStd  : '20200714130000',
+            // dlvryRecvDtEnd  : '20200714163000',
+            // dlvryStateCd    : '01'
+          }
+        }
+      )
+        .then(function(response) {
+          // handle success
+          const updateOrderData: Order[] = [];
+
+          for( const order of response.data.data )
+          {
+            Reactotron.log( order );
+            updateOrderData.push( new Order( order ) );
+          }
+          Reactotron.log( ordersList );
+          ordersList = updateOrderData;
+          Reactotron.log( ordersList );
+          setOrders( updateOrderData );
+          Reactotron.log( updateOrderData );
+        })
+        .catch(function(error) {
+          // handle error
+          alert(error.message);
+        })
+        .finally(function(response) {
+          // always executed
+          // alert('Finally called');
+        });
     };
 
   const renderOrder = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
@@ -104,26 +82,28 @@ export const OrderScreen = (props: OrderScreenProps): ListElement => {
       <View style={styles.cardBody}>
         <View>
           <Text category='s1'>
-          맘스터치 전포점
+          { item.stoMtlty }
           </Text>
 
           <Text category='s1'>
-          부산진구 전포동 xx번지
+          { item.dlvryCusAdres }
           </Text>
 
           <View style={ styles.test }>
             <View style={styles.controlContainer}>
-              <Text status='control'>카드</Text>
+              <Text status='control'>
+                { item.dlvryPaySeCd }
+              </Text>
             </View>
             <Text category='s1' style={{ marginTop:4}}>
-            25,000 | 3,000 | 1.9 Km
+            { item.dlvryFoodAmnt } | { item.dlvryAmnt } | { item.dlvryDstnc } Km
             </Text>
           </View>
         </View>
 
         <View style={styles.controlContainer1}>
           <Text status='control'>
-            5분
+            { item.dlvryPickReqTm }분
           </Text>
         </View>
       </View>

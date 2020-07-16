@@ -6,41 +6,32 @@ import { OrderDetailsScreenProps } from '../../navigation/order.navigator';
 import { Toolbar } from '../../components/toolbar.component';
 import { ImageOverlay } from '../../components/image-overlay.component';
 import { ProgressBar } from '../../components/progress-bar.component';
-import { Todo } from '../../data/todo.model';
+import { Order } from '../../data/order.model';
 
 export type OrderDetailsRouteParams = {
-  todo: Todo;
+  order: Order;
 }
 
 export const OrderDetailsScreen = (props: OrderDetailsScreenProps): LayoutElement => {
 
-  const { todo } = props.route.params;
+  const { order } = props.route.params;
   const insets: EdgeInsets = useSafeArea();
 
   return (
     <React.Fragment>
-      <ImageOverlay
-        style={[styles.appBar, { paddingTop: insets.top }]}
-        source={require('../../assets/image-background.jpeg')}>
-        <Toolbar
-          appearance='control'
-          onBackPress={props.navigation.goBack}
-        />
-      </ImageOverlay>
       <Layout style={styles.container}>
+        <Toolbar
+        appearance='control'
+        onBackPress={props.navigation.goBack}
+        />
         <View style={styles.detailsContainer}>
           <Text
             style={styles.title}
             category='h4'>
-            {todo.title}
+            {order.dlvryNo}
           </Text>
-          <ProgressBar
-            style={styles.progressBar}
-            progress={todo.progress}
-            text={`${todo.progress}%`}
-          />
           <Text style={styles.title}>
-            {todo.description}
+            {order.stoId}
           </Text>
         </View>
         <Button
